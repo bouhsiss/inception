@@ -1,11 +1,22 @@
+server{
+    listen 80;
+    listen [::]:80;
+    server_name hbouhsis.42.fr;
+    return 301 https://$host$request_uri;
+}
+
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen  443 ssl;
+    listen  [::]:443 ssl;
     
     root /usr/share/nginx/html;
     index index.html index.htm;
 
     server_name hbouhsis.42.fr;
+    ssl_certificate /etc/nginx/ssl-certs/inception.crt;
+    ssl_certificate_key /etc/nginx/ssl-certs/inception.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
     location / {
         try_files $uri $uri/ =404;
     }
