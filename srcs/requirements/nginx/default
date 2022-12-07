@@ -1,7 +1,7 @@
 server{
     listen 80;
     listen [::]:80;
-    server_name hbouhsis.42.fr;
+    server_name _;
     return 301 https://$host$request_uri;
 }
 
@@ -12,7 +12,7 @@ server {
     root /usr/share/nginx/html;
     index index.html index.htm;
 
-    server_name hbouhsis.42.fr;
+    server_name _;
     ssl_certificate /etc/nginx/ssl-certs/inception.crt;
     ssl_certificate_key /etc/nginx/ssl-certs/inception.key;
     ssl_protocols TLSv1.2 TLSv1.3;
