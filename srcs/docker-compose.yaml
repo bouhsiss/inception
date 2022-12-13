@@ -6,9 +6,11 @@ services:
     ports:
       - "443:443"
     container_name: nginx
+    restart: on-failure
   mariadb:
     build: 
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    env_file:
+      - ./.env
     container_name: mariadb
-  
