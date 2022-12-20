@@ -11,6 +11,8 @@ services:
     build: 
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    expose:
+      - 3306
     env_file:
       - ./.env
     container_name: mariadb
