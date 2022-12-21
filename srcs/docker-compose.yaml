@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "443:443"
+    volumes:
+      - wp_files:/var/www/html
     container_name: nginx
     restart: on-failure
   mariadb:
@@ -15,4 +17,19 @@ services:
       - 3306
     env_file:
       - ./.env
+    volumes:
+      - wp_db:/var/lib/mysql
     container_name: mariadb
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    expose:
+      - 9000
+    volumes:
+      - wp_file:/var/www/html
+    container_name: wordpress
+
+volumes:
+  wp_db:
+  wp_files:
