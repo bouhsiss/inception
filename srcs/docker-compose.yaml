@@ -32,4 +32,12 @@ services:
 
 volumes:
   wp_db:
+    driver: local
+    driver_opts:
+      type: bind
+      device: ${WP_DB_PATH}
   wp_files:
+    driver: local
+    driver_opts:
+      type: bind
+      device: ${WP_FILES_PATH}
