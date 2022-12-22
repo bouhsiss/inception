@@ -27,7 +27,7 @@ services:
     expose:
       - 9000
     volumes:
-      - wp_file:/var/www/html
+      - wp_files:/var/www/html
     container_name: wordpress
 
 volumes:
@@ -35,9 +35,9 @@ volumes:
     driver: local
     driver_opts:
       type: bind
-      device: ${WP_DB_PATH}
+      device: /Users/hbouhsis/Desktop/wp_db_test
   wp_files:
     driver: local
     driver_opts:
       type: bind
-      device: ${WP_FILES_PATH}
+      device: /Users/hbouhsis/Desktop/wp_files_test
