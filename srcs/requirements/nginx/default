@@ -19,12 +19,13 @@ server {
     ssl_protocols TLSv1.2 TLSv1.3;
 
     location / {
-        try_files $uri $uri/ /index.php?$args =404;
+        try_files $uri $uri/ /index.php$is_args$args;
     }
 
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        # With php-fpm (or other unix sockets):                
-		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include fastcgi.conf;
     }
 }

@@ -8,6 +8,8 @@ services:
     volumes:
       - wp_files:/var/www/html
     container_name: nginx
+    networks:
+      - inception
   mariadb:
     build: 
       context: ./requirements/mariadb
@@ -19,6 +21,8 @@ services:
     volumes:
       - wp_db:/var/lib/mysql
     container_name: mariadb
+    networks:
+      - inception
   wordpress:
     build:
       context: ./requirements/wordpress
@@ -28,6 +32,8 @@ services:
     volumes:
       - wp_files:/var/www/html
     container_name: wordpress
+    networks:
+      - inception
 
 volumes:
   wp_db:
@@ -42,3 +48,7 @@ volumes:
       o: bind 
       type: none
       device: /Users/hbouhsis/Desktop/wp_files_test
+
+networks:
+  inception:
+    driver: bridge
