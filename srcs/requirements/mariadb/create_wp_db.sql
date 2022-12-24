@@ -1,5 +1,5 @@
 --create the database
-CREATE DATABASE WordPress;
+CREATE DATABASE wordpress;
 
 -- create a user and grant him all the privileges on the database 'wordpress'
 CREATE USER 'houda'@'%' IDENTIFIED BY 'thisisatest';

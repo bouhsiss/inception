@@ -1,10 +1,8 @@
-USER=$(whoami)
-
 all:	set_host, up
 
 set_host:
-	$(USER) += ".42.fr"
-    echo "127.0.1.1\t",$(USER)  >> /etc/hosts
+	USER=$(whoami)
+	echo "127.0.1.1\t$(USER).42.fr"  >> /etc/hosts
 
 down:
 	docker-compose -f /srcs/docker-compose.yaml down
