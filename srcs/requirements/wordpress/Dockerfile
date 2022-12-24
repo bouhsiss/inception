@@ -2,6 +2,7 @@ FROM debian:buster
 RUN apt-get -y update
 RUN apt-get -y install php \
     php-fpm \
+    php-mysqli \
     unzip \
     wget \
     git -y
@@ -13,4 +14,5 @@ COPY wp-config-sample.php /var/www/html/wp-config.php
 COPY www.conf /etc/php/7.3/fpm/pool.d/www.conf
 RUN chown -R www-data:www-data /var/www/html/wordpress
 RUN mkdir -p /run/php
+RUN service php7.3-fpm restart
 CMD php-fpm7.3 -F

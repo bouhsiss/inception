@@ -1,17 +1,9 @@
-# this block will redirect each http request to https
-server{
-    listen 80;
-    listen [::]:80;
-    server_name _;
-    return 301 https://$host$request_uri;
-}
-# this block define the settings for a particular server that listens on the HTTPS protocol on port 443 
 server {
     listen  443 ssl;
     listen  [::]:443 ssl;
     
     root /var/www/html/wordpress;
-    index index.php index.html index.htm;
+    index index.php;
 
     server_name _;
     ssl_certificate /etc/nginx/ssl-certs/nginx.crt;
@@ -23,9 +15,12 @@ server {
     }
 
     location ~ \.php$ {
+        try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_pass wordpress:9000;
         fastcgi_index index.php;
-        include fastcgi.conf;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
     }
 }
