@@ -5,7 +5,7 @@ server {
     root /var/www/html/wordpress;
     index index.php;
 
-    server_name _;
+    server_name wordpress;
     ssl_certificate /etc/nginx/ssl-certs/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl-certs/nginx.key;
     ssl_protocols TLSv1.2 TLSv1.3;
