@@ -3,8 +3,6 @@ services:
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
-    depends_on:
-      - mariadb
     ports:
       - "443:443"
     volumes:
@@ -29,8 +27,6 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    depends_on:
-      - nginx
     expose:
       - 9000
     volumes:
@@ -46,14 +42,14 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: "/Users/hbouhsis/Desktop/wp_db_folder"
+      device: "/Users/hbouhsis/Desktop/database"
   wp_files:
     name: wp_files
     driver: local
     driver_opts:
       o: bind 
       type: none
-      device: "/Users/hbouhsis/Desktop/wp_files_folder"
+      device: "/Users/hbouhsis/Desktop/files"
 
 networks:
   inception:
