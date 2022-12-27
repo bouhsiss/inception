@@ -20,4 +20,4 @@ RUN mkdir -p /run/php
 COPY install-wp.sh .
 RUN chmod +x install-wp.sh
 RUN service php7.3-fpm restart
-CMD php-fpm7.3 -F && sh install-wp.sh
+CMD sh install-wp.sh && php-fpm7.3 -F
