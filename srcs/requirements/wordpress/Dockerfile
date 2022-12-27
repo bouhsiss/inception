@@ -3,9 +3,7 @@ RUN apt-get -y update
 RUN apt-get -y install php \
     php-fpm \
     php-mysqli \
-    unzip \
     wget \
-    git \
     php-common \
     php-xml
 RUN wget https://wordpress.org/latest.tar.gz

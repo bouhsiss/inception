@@ -10,6 +10,7 @@ services:
     container_name: nginx
     networks:
       - inception
+    restart: on-failure
   mariadb:
     build: 
       context: ./requirements/mariadb
@@ -23,6 +24,7 @@ services:
     container_name: mariadb
     networks:
       - inception
+    restart: on-failure
   wordpress:
     build:
       context: ./requirements/wordpress
@@ -34,6 +36,7 @@ services:
     container_name: wordpress
     networks:
       - inception
+    restart: on-failure
 
 volumes:
   wp_db:
@@ -42,14 +45,14 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: "/Users/hbouhsis/Desktop/database"
+      device: "/home/hbouhsis/data/wp_db"
   wp_files:
     name: wp_files
     driver: local
     driver_opts:
       o: bind 
       type: none
-      device: "/Users/hbouhsis/Desktop/files"
+      device: "/home/hbouhsis/data/wp_files"
 
 networks:
   inception:
