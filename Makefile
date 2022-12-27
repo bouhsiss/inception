@@ -1,28 +1,30 @@
-all:	set_host, up
+NAME = inception
+USER=$(whoami)
 
-set_host:
-	USER=$(whoami)
-	echo "127.0.1.1\t$(USER).42.fr"  >> /etc/hosts
+all : $(NAME)
 
-down:
-	docker-compose -f /srcs/docker-compose.yaml down
+$(NAME) : 
+	sudo sh -c 'echo "127.0.1.1\thbouhsis.42.fr"  >> /etc/hosts'
+	sudo mkdir -p "/home/hbouhsis/data/wp_db"
+	sudo mkdir -p "/home/hbouhsis/data/wp_files"
+	docker compose -f ./srcs/docker-compose.yaml up --build -d
+
+down :
+	docker compose -f ./srcs/docker-compose.yaml down
 	
-restart:
-	docker-compose -f /srcs/docker-compose.yaml restart
+restart :
+	docker compose -f ./srcs/docker-compose.yaml restart
 
-build:
-	docker-compose -f /srcs/docker-compose.yaml build
 
-up:
-	docker-compose -f /srcs/docker-compose.yaml up -d
+prune :
+	docker compose -f ./srcs/docker-compose.yaml down --rmi all --volumes
 
-prune:
-	docker-compose -f /srcs/docker-compose.yaml -v --remove-orphans --rmi all down
-
-re: fclean all
+re : fclean all
 	
 
-clean: down prune
+clean : down prune
 
 
-fclean:
+fclean : clean
+	sudo rm -rf /home/hbouhsis/data/wp_db
+	sudo rm -rf /home/hbouhsis/data/wp_files
