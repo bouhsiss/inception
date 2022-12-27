@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "443:443"
+    env_file:
+      - ./.env
     volumes:
       - wp_files:/var/www/html
     container_name: nginx
@@ -35,6 +37,8 @@ services:
       dockerfile: Dockerfile
     expose:
       - 9000
+    env_file:
+      - ./.env
     volumes:
       - wp_files:/var/www/html
     container_name: wordpress
