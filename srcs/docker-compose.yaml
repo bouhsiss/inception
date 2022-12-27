@@ -1,5 +1,7 @@
 services:
   nginx:
+    depends_on:
+      - wordpress
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
@@ -26,6 +28,8 @@ services:
       - inception
     restart: on-failure
   wordpress:
+    depends_on:
+      - mariadb
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
