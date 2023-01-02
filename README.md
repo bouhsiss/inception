@@ -9,5 +9,5 @@ configured) only without nginx.
   - A volume that contains your WordPress database.
   - A second volume that contains your WordPress website files.
   - A docker-network that establishes the connection between your containers.
-## infrastructure diagram
+##  diagram of the expected result
  <img width="620" alt="Screen Shot 2023-01-02 at 3 19 36 PM" src="https://user-images.githubusercontent.com/85262731/210243635-e13a3d35-0aff-4cc5-b8a1-06e07fee8f50.png">
